@@ -4,7 +4,7 @@
 
 Clone the template:
 ```
-$ git clone git@github.com:dominiklessel/express-web-app-template.git my_web_app
+$ git clone git@github.com:dominiklessel/express-web-boilerplate.git my_web_app
 ```
 
 Install dependencies:
