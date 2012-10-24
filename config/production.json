@@ -1,0 +1,6 @@
+{
+  "App" : {
+    "Port" : 8080,
+    "CookieSecret" : "your secret here"
+  }
+}

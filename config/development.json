@@ -1,0 +1,6 @@
+{
+  "App" : {
+    "Port" : 3000,
+    "CookieSecret" : "your dev secret here"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "web-app-template",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express" : "3.0.0",
+    "nconf"   : "*",
+    "jade"    : "*",
+    "stylus"  : "*",
+    "lingua"  : "0.3.2"
+  }
+}

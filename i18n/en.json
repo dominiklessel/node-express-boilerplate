@@ -1,0 +1,19 @@
+{
+  "title": "Web app",
+  "seperator" : "-",
+  "meta" : {
+    "robots" : "index, follow",
+    "google" : "notranslate",
+    "author" : "",
+    "description" : "",
+    "keywords" : ""
+  },
+  "sites" : {
+    "base" : {
+      "title" : "Welcome!"
+    }
+  },
+  "headings" : {
+    "Hello World!" : "Hello World!"
+  }
+}
