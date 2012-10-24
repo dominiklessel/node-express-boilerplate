@@ -24,15 +24,15 @@ require( __dirname + '/config/enviroment.js' )(
 );
 
 /**
- * Controller setup
+ * Middleware setup
  */
 
-var controllers = [
+var middlewareCollection = [
    'base'
-].map(function( controllerName ) {
-  var controller;
-  controller = require( './controllers/' + controllerName );
-  return controller.setup( app );
+].map(function( middlewareName ) {
+  var middleware;
+  middleware = require( './middleware/' + middlewareName );
+  return middleware.setup( app );
 });
 
 /**
