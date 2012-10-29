@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "express" : "3.0.0",
-    "express-cdn" : "*";
+    "express-cdn" : "*",
     "nconf"   : "*",
     "jog"     : "*",
     "jade"    : "*",
