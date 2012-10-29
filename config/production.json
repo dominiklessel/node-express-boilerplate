@@ -1,6 +1,19 @@
 {
+  "Production" : true,
   "App" : {
+    "Host" : "your-domain.com",
     "Port" : 8080,
     "CookieSecret" : "your secret here"
+  },
+  "Services" : {
+    "AWS" : {
+      "Key"    : "xxx",
+      "Secret" : "xxx"
+    }
+  },
+  "CDN" : {
+    "Domain"  : "cdn.your-domain.com",
+    "SSL"     : true,
+    "Bucket"  : "cdn-bucket-name"
   }
 }

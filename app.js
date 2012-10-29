@@ -22,6 +22,8 @@ log = jog(new jog.FileStore(path.join(__dirname, 'logs', 'app.log'))); // note: 
  */
 
 var app = express();
+
+// Enviroment setup
 require( __dirname + '/config/enviroment.js' )(
   path,
   express,
@@ -29,6 +31,13 @@ require( __dirname + '/config/enviroment.js' )(
   stylus,
   lingua
 );
+
+// CDN setup
+// require( __dirname + '/config/cdn.js' )(
+//   path,
+//   app
+// );
+
 
 /**
  * Middleware setup
