@@ -14,6 +14,14 @@ html
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
 
     link(rel='stylesheet', href='/css/master.css')
+
   body
 
-      block content
+    block content
+
+    script(src='/js/libs/require.js')
+    script
+      require(['jquery','underscore'], function( $, _ ) {
+        console.log( $ );
+        console.log( _ );
+      });

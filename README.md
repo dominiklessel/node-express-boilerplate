@@ -22,6 +22,10 @@ Start the server:
 $ node app
 ```
 
+## Asset management
+
+[jam.js](https://github.com/caolan/jam) is used for asset management, but still has a bug, which forces you to fix paths inside `require.config.js` and `require.js` manually.
+
 ## Module dependencies
 
 - express (v3.0.0)
