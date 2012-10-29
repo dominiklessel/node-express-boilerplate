@@ -32,7 +32,7 @@ $ node app
 
 To use a CDN, just update your configuration files, uncomment line 36 - 39 in `app.js` and use the CDN helper inside your views.
 
-For mor information take a look at the [express-cdn docs](https://github.com/niftylettuce/express-cdn).
+For more information take a look at the [express-cdn docs](https://github.com/niftylettuce/express-cdn).
 
 ## Module dependencies
 
