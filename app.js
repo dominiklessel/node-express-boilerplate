@@ -8,7 +8,14 @@ var http    = require('http');
 var path    = require('path');
 var lingua  = require('lingua');
 var stylus  = require('stylus');
-nconf       = require('nconf'); // note: global (missing var)
+var jog     = require('jog');
+nconf       = require('nconf'); // note: global
+
+/**
+ * Logging
+ */
+
+log = jog(new jog.FileStore(path.join(__dirname, 'logs', 'app.log'))); // note: global
 
 /**
  * App setup

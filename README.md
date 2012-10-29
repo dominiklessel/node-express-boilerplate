@@ -1,4 +1,4 @@
-# Web app template powered by node.js + express.js (3.0)
+# express.js web boilerplate
 
 ## Quick Start
 
@@ -16,3 +16,12 @@ Start the server:
 ```
 $ node app
 ```
+
+## Module dependencies
+
+- express (v3.0.0)
+- nconf (v0.6.4)
+- jog (v0.5.1)
+- jade (v0.27.6)
+- stylus (v0.30.1)
+- lingua (v0.3.2)
