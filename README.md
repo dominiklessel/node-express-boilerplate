@@ -4,12 +4,17 @@
 
 Clone the template:
 ```
-$ git clone git@github.com:dominiklessel/express-web-boilerplate.git my_web_app
+$ git clone git@github.com:dominiklessel/express-web-boilerplate.git my_web_app && cd my_web_app
 ```
 
 Install dependencies:
 ```
 $ npm install
+```
+
+Create logs folder
+```
+$ mkdir logs
 ```
 
 Start the server:
