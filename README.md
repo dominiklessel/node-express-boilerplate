@@ -2,7 +2,7 @@
 
 ## Quick Start
 
-Clone the template:
+Clone the boilerplate:
 ```
 $ git clone git@github.com:dominiklessel/express-web-boilerplate.git my_web_app && cd my_web_app
 ```
