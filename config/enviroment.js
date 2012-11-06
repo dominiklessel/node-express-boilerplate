@@ -6,6 +6,14 @@ module.exports = function( path, express, app, stylus, lingua ) {
       .set( 'compress', true );
   };
 
+  app.configure('production', function() {
+    nconf.file({ file: path.join(__dirname, 'production.json') });
+  });
+
+  app.configure('development', function() {
+    nconf.file({ file: path.join(__dirname, 'development.json') });
+  });
+
   app.configure(function(){
     app.set( 'views', path.join(__dirname, '..', 'views') );
     app.set( 'view engine', 'jade' );
@@ -22,7 +30,6 @@ module.exports = function( path, express, app, stylus, lingua ) {
   });
 
   app.configure('development', function() {
-    nconf.file({ file: path.join(__dirname, 'development.json') });
     app.set( 'port', nconf.get('App:Port') );
 
     // error handling
@@ -34,7 +41,6 @@ module.exports = function( path, express, app, stylus, lingua ) {
   });
 
   app.configure('production', function() {
-    nconf.file({ file: path.join(__dirname, 'production.json') });
     app.set( 'port', nconf.get('App:Port') );
 
     // error handling
