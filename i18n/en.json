@@ -8,6 +8,11 @@
     "description" : "",
     "keywords" : ""
   },
+  "labels" : {
+    "Select language" : "Select language",
+    "German" : "Deutsch",
+    "English" : "English"
+  },
   "sites" : {
     "base" : {
       "title" : "Welcome!"

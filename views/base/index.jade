@@ -1,11 +1,19 @@
 extends ../layout
 
 block content
-  header
-    ul
-      li
-        a(href='/?language=de') DE
-      li
-        a(href='/?language=en') US
-  div.container
-    h1= lingua.headings['Hello World!']
+
+  header.row
+
+    div.span12
+      div.btn-group.pull-right
+        a.btn.dropdown-toggle(data-toggle='dropdown', href='#')= lingua.labels['Select language']
+          span.caret
+        ul.dropdown-menu
+          li
+            a(href='/?language=de')= lingua.labels['German']
+          li
+            a(href='/?language=en')= lingua.labels['English']
+
+  div.row
+    div.span12
+      h1= lingua.headings['Hello World!']
