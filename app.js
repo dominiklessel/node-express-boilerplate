@@ -8,14 +8,36 @@ var http    = require('http');
 var path    = require('path');
 var lingua  = require('lingua');
 var stylus  = require('stylus');
-var jog     = require('jog');
+var bunyan  = require('bunyan');
 nconf       = require('nconf'); // note: global
 
 /**
  * Logging
  */
 
-log = jog(new jog.FileStore(path.join(__dirname, 'logs', 'app.log'))); // note: global
+// simple logging middleware
+var logger = function( req, res, next ) {
+  var AccessLog = bunyan.createLogger({
+    name    : 'AccessLog',
+    streams : [{
+      path  : path.join( __dirname, 'logs', 'access.log' )
+    }],
+    serializers: {
+      req : bunyan.stdSerializers.req
+    }
+  });
+  AccessLog.info({
+    req : req
+  });
+  next();
+};
+
+log = bunyan.createLogger({ // global
+  name    : 'CustomLog',
+  streams : [{
+    path  : path.join( __dirname, 'logs', 'custom.log' )
+  }]
+});
 
 /**
  * App setup
@@ -28,6 +50,7 @@ require( __dirname + '/config/enviroment.js' )(
   path,
   express,
   app,
+  logger,
   stylus,
   lingua
 );

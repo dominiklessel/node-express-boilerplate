@@ -1,4 +1,4 @@
-module.exports = function( path, express, app, stylus, lingua ) {
+module.exports = function( path, express, app, logger, stylus, lingua ) {
   
   var compileStylus = function( str, path ) {
     return stylus( str )
@@ -19,14 +19,15 @@ module.exports = function( path, express, app, stylus, lingua ) {
     app.set( 'view engine', 'jade' );
     app.use( lingua(app, { defaultLocale: 'en', path: path.join(__dirname, '..', 'i18n') }) );
     app.use( express.favicon() );
-    app.use( express.logger('dev') );
     app.use( express.bodyParser() );
     app.use( express.methodOverride() );
     app.use( express.cookieParser(nconf.get('App:CookieSecret')) );
-    app.use( app.router );
-    app.use( express.compress() );
     app.use( stylus.middleware({ src: path.join(__dirname, '..', 'public'), compile: compileStylus }) );
     app.use( express.static(path.join(__dirname, '..', 'public')) );
+    app.use( express.logger('default') );
+    app.use( logger );
+    app.use( app.router );
+    app.use( express.compress() );
   });
 
   app.configure('development', function() {

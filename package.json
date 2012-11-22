@@ -9,7 +9,7 @@
     "express"     : ">3.0.0",
     "express-cdn" : "*",
     "nconf"       : "*",
-    "jog"         : "*",
+    "bunyan"      : "*",
     "jade"        : "*",
     "stylus"      : "*",
     "lingua"      : "*"
