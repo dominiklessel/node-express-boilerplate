@@ -23,11 +23,11 @@ module.exports = function( path, express, app, logger, stylus, lingua ) {
     app.use( express.methodOverride() );
     app.use( express.cookieParser(nconf.get('App:CookieSecret')) );
     app.use( stylus.middleware({ src: path.join(__dirname, '..', 'public'), compile: compileStylus }) );
+    app.use( express.compress() );
     app.use( express.static(path.join(__dirname, '..', 'public')) );
     app.use( express.logger('default') );
     app.use( logger );
     app.use( app.router );
-    app.use( express.compress() );
   });
 
   app.configure('development', function() {
