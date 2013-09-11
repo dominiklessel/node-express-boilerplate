@@ -1,16 +1,22 @@
 {
-  "name": "express-web-boilerplate",
-  "version": "0.2.0",
   "private": true,
+  "name": "express-web-boilerplate",
+  "description": "Foo bar",
+  "version": "0.2.0",
+  "author": "Dominik Lessel <dominik@mifitto.com>",
+  "repository": {
+    "type": "git",
+    "url": "dominiklessel/express-web-boilerplate"
+  },
+  "dependencies": {
+    "express"     : "3.4.x",
+    "nconf"       : "0.6.x",
+    "bunyan"      : "0.21.x",
+    "jade"        : "0.35.x",
+    "stylus"      : "0.37.x",
+    "lingua"      : "0.3.x"
+  },
   "scripts": {
     "start": "node app"
   },
-  "dependencies": {
-    "express"     : ">3.0.0",
-    "nconf"       : "*",
-    "bunyan"      : "*",
-    "jade"        : "*",
-    "stylus"      : "*",
-    "lingua"      : "*"
-  }
 }
