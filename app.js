@@ -3,19 +3,19 @@
  * Module dependencies.
  */
 
-var express = require('express');
-var http    = require('http');
 var path    = require('path');
-var lingua  = require('lingua');
-var stylus  = require('stylus');
-var bunyan  = require('bunyan');
-nconf       = require('nconf'); // note: global
+
+var express = require('express'),
+    lingua  = require('lingua'),
+    stylus  = require('stylus'),
+    bunyan  = require('bunyan');
+
+    nconf   = require('nconf'); // note: global
 
 /**
  * Logging
  */
 
-// simple logging middleware
 var logger = function( req, res, next ) {
   var AccessLog = bunyan.createLogger({
     name    : 'AccessLog',
@@ -71,6 +71,7 @@ var middlewareCollection = [
  * Server setup
  */
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log( 'Express server listening on port ' + app.get('port') );
-});
+if ( !module.parent ) {
+  app.listen( app.get('port') );
+  console.log( 'Express server listening on port %s', app.get('port') );
+}

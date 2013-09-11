@@ -14,11 +14,6 @@ Install dependencies:
 $ npm install
 ```
 
-Create logs folder
-```
-$ mkdir logs
-```
-
 Start the server:
 ```
 $ node app
