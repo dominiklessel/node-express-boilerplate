@@ -55,13 +55,6 @@ require( __dirname + '/config/enviroment.js' )(
   lingua
 );
 
-// CDN setup
-// require( __dirname + '/config/cdn.js' )(
-//   path,
-//   app
-// );
-
-
 /**
  * Middleware setup
  */
