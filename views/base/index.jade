@@ -4,9 +4,10 @@ block content
 
   header.row
 
-    div.span12
+    div.col-md-12
       div.btn-group.pull-right
-        a.btn.dropdown-toggle(data-toggle='dropdown', href='#')= lingua.labels['Select language']
+        button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown')
+          | Action
           span.caret
         ul.dropdown-menu
           li
@@ -15,5 +16,12 @@ block content
             a(href='/?language=en')= lingua.labels['English']
 
   div.row
-    div.span12
+    div.col-md-12
       h1= lingua.headings['Hello World!']
+      div.row
+        p.col-md-6
+          | Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
+          | Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.
+        p.col-md-6
+          | Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
+          | Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
