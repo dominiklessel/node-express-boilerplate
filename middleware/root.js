@@ -3,11 +3,11 @@
  * Base controller
  */
 
-var indentifier = 'base';
+var indentifier = 'root';
 
 var getIndex = function( req, res ) {
   var pageTitle = res.lingua.content.sites[indentifier].title;
-  res.render('base/index', {
+  res.render( indentifier + '/index', {
     'pageTitle' : pageTitle
   });
 };

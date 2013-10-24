@@ -60,7 +60,7 @@ require( __dirname + '/config/enviroment.js' )(
  */
 
 var middlewareCollection = [
-   'base'
+   'root'
 ].map(function( middlewareName ) {
   var middleware;
   middleware = require( './middleware/' + middlewareName );

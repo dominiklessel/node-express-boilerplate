@@ -1,24 +1,24 @@
 {
-  "title": "Web app",
-  "seperator" : "-",
-  "meta" : {
-    "robots" : "index, follow",
-    "google" : "notranslate",
-    "author" : "",
-    "description" : "",
-    "keywords" : ""
+  "title": "mifitto",
+  "seperator": "-",
+  "meta": {
+    "robots": "index, follow",
+    "google": "notranslate",
+    "author": "mifitto GmbH",
+    "description": "",
+    "keywords": ""
   },
-  "labels" : {
-    "Select language" : "Sprache wählen",
-    "German" : "Deutsch",
-    "English" : "English"
+  "labels": {
+    "Select language": "Sprache wählen",
+    "German": "Deutsch",
+    "English": "English"
   },
-  "sites" : {
-    "base" : {
-      "title" : "Willkommen!"
+  "sites": {
+    "root": {
+      "title": "Willkommen!"
     }
   },
-  "headings" : {
-    "Hello World!" : "Hallo Welt!"
+  "headings": {
+    "Hello World!": "Hallo Welt!"
   }
 }
