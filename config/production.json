@@ -1,19 +1,14 @@
 {
-  "Production" : true,
-  "App" : {
-    "Host" : "your-domain.com",
-    "Port" : 8080,
-    "CookieSecret" : "your secret here"
+  "App": {
+    "Name": "express-boilerplate",
+    "Version": "0.3.0",
+    "Host": "your-domain.com",
+    "Port": 8080,
+    "CookieSecret": "your secret here"
   },
-  "Services" : {
-    "AWS" : {
-      "Key"    : "xxx",
-      "Secret" : "xxx"
+  "Services": {
+    "Loggly": {
+      "Endpoint": "https://logs-01.loggly.com/inputs/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/"
     }
-  },
-  "CDN" : {
-    "Domain"  : "cdn.your-domain.com",
-    "SSL"     : true,
-    "Bucket"  : "cdn-bucket-name"
   }
 }

@@ -1,42 +1,64 @@
 
 /**
+ * Some check
+ */
+
+if ( !process.env.NODE_ENV ) {
+  process.env.NODE_ENV = 'development';
+}
+
+/**
  * Module dependencies.
  */
 
 var path    = require('path');
+var fs      = require('fs-extra');
+var express = require('express');
+var bunyan  = require('bunyan');
 
-var express = require('express'),
-    lingua  = require('lingua'),
-    stylus  = require('stylus'),
-    bunyan  = require('bunyan');
+/**
+ * Global utilities
+ */
 
-    nconf   = require('nconf'); // note: global
+_     = require('lodash');
+async = require('async');
+nconf = require('nconf').file( path.join(__dirname,'config',process.env.NODE_ENV+'.json') );
+
+/**
+ * Helper
+ */
+
+var Header = require( path.join(__dirname, 'helpers', 'Header') );
+var LogglyStream = require( path.join(__dirname, 'helpers', 'LogglyStream') );
+var Enviroment = require( path.join(__dirname, 'config', 'enviroment') );
+var Middleware = require( path.join(__dirname, 'middleware') );
 
 /**
  * Logging
  */
 
-var logger = function( req, res, next ) {
-  var AccessLog = bunyan.createLogger({
-    name    : 'AccessLog',
-    streams : [{
-      path  : path.join( __dirname, 'logs', 'access.log' )
-    }],
-    serializers: {
-      req : bunyan.stdSerializers.req
-    }
-  });
-  AccessLog.info({
-    req : req
-  });
-  next();
-};
+log = bunyan.createLogger({
+  name: 'EventLogger',
+  serializers: {
+    req: bunyan.stdSerializers.req,
+    res: bunyan.stdSerializers.res
+  },
+  streams: [
+    { type: 'raw', level: 'info', stream: new LogglyStream() },
+    { path: path.join( __dirname, 'logs', process.env.NODE_ENV + '-' + nconf.get('App:Name') + '-events.log' ) }
+  ]
+});
 
-log = bunyan.createLogger({ // global
-  name    : 'CustomLog',
-  streams : [{
-    path  : path.join( __dirname, 'logs', 'custom.log' )
-  }]
+reqLog = bunyan.createLogger({
+  name: 'RequestLogger',
+  serializers: {
+    req: bunyan.stdSerializers.req,
+    res: bunyan.stdSerializers.res
+  },
+  streams: [
+    { type: 'raw', level: 'info', stream: new LogglyStream() },
+    { path: path.join( __dirname, 'logs', process.env.NODE_ENV + '-' + nconf.get('App:Name') + '-requests.log' ) }
+  ]
 });
 
 /**
@@ -45,33 +67,15 @@ log = bunyan.createLogger({ // global
 
 var app = express();
 
-// Enviroment setup
-require( __dirname + '/config/enviroment.js' )(
-  path,
-  express,
-  app,
-  logger,
-  stylus,
-  lingua
-);
-
-/**
- * Middleware setup
- */
-
-var middlewareCollection = [
-   'root'
-].map(function( middlewareName ) {
-  var middleware;
-  middleware = require( './middleware/' + middlewareName );
-  return middleware.setup( app );
+async.series([Enviroment.bind(app), Middleware.bind(app)], function( err, results ) {
+  Header();
+  if ( err ) {
+    console.log( 'Error:' );
+    console.log();
+    console.dir( err );
+    return;
+  }
+  app.listen( nconf.get('App:Port'), function() {
+    console.log(' - Server listening to Port %s', nconf.get('App:Port') );
+  });
 });
-
-/**
- * Server setup
- */
-
-if ( !module.parent ) {
-  app.listen( app.get('port') );
-  console.log( 'Express server listening on port %s', app.get('port') );
-}

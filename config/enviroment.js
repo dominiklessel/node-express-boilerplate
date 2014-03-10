@@ -1,60 +1,88 @@
-module.exports = function( path, express, app, logger, stylus, lingua ) {
-  
-  var compileStylus = function( str, path ) {
+
+/**
+ * Module dependencies.
+ */
+
+var path = require('path');
+var express = require('express');
+var stylus = require('stylus');
+
+/**
+ * Express middleware
+ */
+
+
+var lingua = require('lingua');
+
+var favicon = require('static-favicon');
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+var cookieParser = require('cookie-parser');
+var cookieSession = require('cookie-session');
+var compress = require('compression');
+
+/**
+ * Stylus
+ */
+
+var stylusMiddleware = function() {
+
+  var compile = function( str, path ) {
     return stylus( str )
       .set( 'filename', path )
       .set( 'compress', true );
   };
 
-  app.configure('production', function() {
-    nconf.file({ file: path.join(__dirname, 'production.json') });
+  return stylus.middleware({
+    src: path.join(__dirname, '..', 'public'),
+    compile: compile
   });
 
-  app.configure('development', function() {
-    nconf.file({ file: path.join(__dirname, 'development.json') });
-  });
+};
 
-  app.configure(function(){
-    app.set( 'views', path.join(__dirname, '..', 'views') );
-    app.set( 'view engine', 'jade' );
-    app.use( lingua(app, { defaultLocale: 'en', path: path.join(__dirname, '..', 'i18n') }) );
-    app.use( express.favicon() );
-    app.use( express.bodyParser() );
-    app.use( express.methodOverride() );
-    app.use( express.cookieParser(nconf.get('App:CookieSecret')) );
-    app.use( stylus.middleware({ src: path.join(__dirname, '..', 'public'), compile: compileStylus }) );
-    app.use( express.compress() );
-    app.use( express.static(path.join(__dirname, '..', 'public')) );
-    app.use( express.logger('default') );
-    app.use( logger );
-    app.use( app.router );
-  });
+/**
+ * Configure express app
+ */
 
-  app.configure('development', function() {
-    app.set( 'port', nconf.get('App:Port') );
+var configureApp = function( app, callback ) {
 
-    // error handling
-    app.use( express.errorHandler() );
+  app.disable('x-powered-by');
 
-    // 404 handling
-    // -> done by express
+  app.set( 'views', path.join(__dirname, '..', 'views') );
+  app.set( 'view engine', 'jade' );
 
-  });
+  app.use( lingua(app, { defaultLocale: 'de', path: path.join(__dirname, '..', 'i18n') }) );
 
-  app.configure('production', function() {
-    app.set( 'port', nconf.get('App:Port') );
+  app.use( favicon( path.join(__dirname,'..','public','favicon.ico') ) );
+  app.use( bodyParser() );
+  app.use( methodOverride() );
+  app.use( cookieParser({keys:[nconf.get('App:CookieSecret')]}) );
+  app.use( cookieSession(nconf.get('App:CookieSecret')) );
+  app.use( stylusMiddleware() );
+  app.use( compress() );
 
-    // error handling
-    app.use(function( err, req, res, next ) {
-      console.error( err.stack );
-      res.send( 500, 'Something bad happend!' );
-    });
+  // Static resources
+  app.use( express.static(path.join(__dirname, '..', 'public')) );
 
-    // 404 handling
-    app.use(function( req, res ) {
-      res.send( 404 );
-    });
+  // Custom middleware
+  app.use( require(path.join(__dirname, '..', 'middleware', 'logger')) );
 
-  });
+  // Locals
+  app.locals.env = process.env.NODE_ENV;
+  app.locals.appVersion = nconf.get('App:Version');
+
+  return callback( null, true );
+
+};
+
+/**
+ * Export
+ */
+
+module.exports = function( callback ) {
+
+  var app = this;
+
+  configureApp( app, callback );
 
 };
