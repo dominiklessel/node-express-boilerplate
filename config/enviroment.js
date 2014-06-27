@@ -14,7 +14,7 @@ var stylus = require('stylus');
 
 var lingua = require('lingua');
 
-var favicon = require('static-favicon');
+var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var cookieParser = require('cookie-parser');
@@ -54,7 +54,8 @@ var configureApp = function( app, callback ) {
   app.use( lingua(app, { defaultLocale: 'de', path: path.join(__dirname, '..', 'i18n') }) );
 
   app.use( favicon( path.join(__dirname,'..','public','favicon.ico') ) );
-  app.use( bodyParser() );
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(bodyParser.json());
   app.use( methodOverride() );
   app.use( cookieParser({keys:[nconf.get('App:CookieSecret')]}) );
   app.use( cookieSession(nconf.get('App:CookieSecret')) );
