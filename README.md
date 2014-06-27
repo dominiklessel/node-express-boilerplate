@@ -1,5 +1,7 @@
 # express.js web boilerplate
 
+[![Dependency Status](https://gemnasium.com/dominiklessel/node-express-boilerplate.svg)](https://gemnasium.com/dominiklessel/node-express-boilerplate)
+
 This thing is far from perfect, but should give you a good starting point for your web site / app.
 
 ## Quick Start
