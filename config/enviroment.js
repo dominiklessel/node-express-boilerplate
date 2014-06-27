@@ -54,10 +54,10 @@ var configureApp = function( app, callback ) {
   app.use( lingua(app, { defaultLocale: 'de', path: path.join(__dirname, '..', 'i18n') }) );
 
   app.use( favicon( path.join(__dirname,'..','public','favicon.ico') ) );
-  app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(bodyParser.json());
+  app.use( bodyParser.urlencoded({ extended: true }));
+  app.use( bodyParser.json());
   app.use( methodOverride() );
-  app.use( cookieParser({keys:[nconf.get('App:CookieSecret')]}) );
+  app.use( cookieParser( nconf.get('App:CookieSecret') ));
   app.use( cookieSession(nconf.get('App:CookieSecret')) );
   app.use( stylusMiddleware() );
   app.use( compress() );
