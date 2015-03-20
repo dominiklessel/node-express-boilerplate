@@ -1,3 +1,5 @@
+**NOTE:** THIS BOILERPLATE IS NO LONGER MAINTAINED
+
 # express.js web boilerplate
 
 [![Dependency Status](https://gemnasium.com/dominiklessel/node-express-boilerplate.svg)](https://gemnasium.com/dominiklessel/node-express-boilerplate)
